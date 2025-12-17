@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_blank">
+    <link rel='icon' type='image/x-icon' href="../resouce/icon/n.png">
+    <!-- 引入Font Awesome图标库（用于导航/社交图标） -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>站长主页</title>
+    <style>
+        /* 全局重置 & 基础变量（方便统一调整风格） */
+        :root {
+            --primary-color: rgba(76, 175, 80, 0.8); /* 主色调（半透明绿） */
+            --card-bg: rgba(255, 255, 255, 0.15); /* 卡片背景（毛玻璃） */
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* 通用阴影 */
+            --transition: all 0.3s ease; /* 通用过渡动画 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 页面基础样式（毛玻璃+弹性布局） */
+        body {
+            min-height: 100vh;
+            font-family: "Microsoft Yahei", sans-serif;
+            color: white;
+            background-image: url(../resouce/background/background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            /* 弹性布局：内容垂直居中，水平居中 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 20px;
+            /* 背景模糊（增强毛玻璃效果） */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* 1. 头像区域（强化美化） */
+        .avatar-wrapper {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            box-shadow: var(--shadow);
+            object-fit: cover;
+            cursor: pointer;
+            transition: var(--transition);
+            /* 头像渐变边框动效（可选） */
+            position: relative;
+        }
+
+        .avatar::after {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #4CAF50, #2196F3, #9C27B0) border-box;
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .avatar:hover::after {
+            opacity: 1;
+        }
+
+        .site-name {
+            font-size: 28px;
+            margin: 15px 0 8px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .signature {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+        }
+
+        /* 2. 个人简介板块（卡片式+毛玻璃） */
+        .intro-card {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .intro-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: #4CAF50;
+        }
+
+        .intro-text {
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            text-indent: 2em;
+        }
+
+        /* 3. 功能导航板块（网格布局+按钮美化） */
+        .nav-section {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .nav-btn i {
+            font-size: 28px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .nav-btn span {
+            font-size: 14px;
+        }
+
+        /* 4. 社交链接板块（简约横向排列） */
+        .social-section {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-list {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .social-item {
+            color: white;
+            font-size: 24px;
+            transition: var(--transition);
+        }
+
+        .social-item:hover {
+            transform: scale(1.2);
+            color: #4CAF50;
+        }
+
+        /* 5. 底部版权信息 */
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* 移动端适配（768px以下） */
+        @media (max-width: 768px) {
+            body {
+                background-image: url(../resouce/background/mobile-background.jpg);
+                padding: 20px 15px;
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
+
+            .site-name {
+                font-size: 22px;
+            }
+
+            .intro-card, .social-section {
+                padding: 20px 15px;
+            }
+
+            .nav-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .social-list {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. 头像&名称区域 -->
+    <div class="avatar-wrapper">
+        <img class="avatar" src="../resouce/avatar/avatar.jpg" alt="站长头像">
+        <h1 class="site-name">站长的个人主页</h1>
+        <p class="signature">用心做内容，用爱筑网站 ✨</p>
+    </div>
+
+    <!-- 2. 个人简介板块 -->
+    <div class="intro-card">
+        <h2 class="card-title"><i class="fas fa-user-circle"></i> 关于我</h2>
+        <p class="intro-text">
+            大家好，我是本站站长，一名热爱互联网、专注于分享实用干货的开发者。
+            建站多年，始终坚持以用户为中心，分享编程技巧、工具资源、行业见解等内容。
+            希望我的小站能给你带来帮助，也欢迎大家多提建议，一起交流成长！
+        </p>
+    </div>
+
+    <!-- 3. 功能导航板块 -->
+    <div class="nav-section">
+        <h2 class="card-title"><i class="fas fa-compass"></i> 本站导航</h2>
+        <div class="nav-grid">
+            <div class="nav-btn">
+                <i class="fas fa-book"></i>
+                <span>教程专栏</span>
+            </div>
+            <div class="nav-btn">
+                <i class="fas fa-toolbox"></i>
+                <span>实用工具</span>
+            </div>
+            <div class="nav-btn">
+                <i class="fas fa-file-alt"></i>
+                <span>资源下载</span>
+            </div>
+            <div class="nav-btn">
+                <i class="fas fa-comments"></i>
+                <span>留言交流</span>
+            </div>
+            <div class="nav-btn">
+                <i class="fas fa-star"></i>
+                <span>精选推荐</span>
+            </div>
+            <div class="nav-btn">
+                <i class="fas fa-info-circle"></i>
+                <span>关于本站</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. 社交链接板块 -->
+    <div class="social-section">
+        <h2 class="card-title"><i class="fas fa-link"></i> 联系我</h2>
+        <div class="social-list">
+            <a href="#" class="social-item"><i class="fab fa-weixin" title="微信"></i></a>
+            <a href="#" class="social-item"><i class="fab fa-github" title="GitHub"></i></a>
+            <a href="#" class="social-item"><i class="fab fa-qq" title="QQ"></i></a>
+            <a href="#" class="social-item"><i class="fas fa-envelope" title="邮箱"></i></a>
+            <a href="#" class="social-item"><i class="fab fa-bilibili" title="B站"></i></a>
+        </div>
+    </div>
+
+    <!-- 5. 底部版权 -->
+    <div class="footer">
+        © 2077 站长主页 - 保留所有权利
+    </div>
+</body>
+</html>
