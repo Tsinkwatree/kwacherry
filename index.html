@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_blank">
+    <title>发布页</title>
+    <style>
+        /* 全局重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 页面基础样式 */
+        body {
+            min-height: 100vh;
+            font-family: "Microsoft Yahei", sans-serif;
+            color: #333;
+            /* PC端背景图片配置 */
+            background-image: url(resouce/background/background.jpg); /* PC端背景图路径 */
+            background-size: cover; /* 缩放至覆盖整个容器，保持比例 */
+            background-repeat: no-repeat; /* 禁止重复 */
+            background-position: center center; /* 居中显示 */
+            background-attachment: fixed; /* 固定背景，滚动时不移动 */
+        }
+
+        /* 主标题样式 */
+        h1 {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgb(255, 255, 255);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);/* 添加文字阴影 */
+            font-size: 2.5rem;
+            
+
+            background: linear-gradient(to right,rgba(246, 115, 102, 0.7), rgba(107, 206, 94, 0.7)) no-repeat bottom;
+			background-size: 0 50px;
+			transition: background-size 1300ms;
+			border-radius: 5px;
+			padding: 0 0em;
+        }
+        /* 实时解析鼠标是否在标题 */
+        h1:hover {
+				background-position: center;
+				background-size: 100% 45px;
+			}
+
+            
+
+        /* 无序列表容器 */
+        .list-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        /* 无序列表样式 */
+        ul {
+            background-color: rgba(128, 128, 128, 0.53); /* 半透明白色背景，提升可读性 */
+            padding: 30px 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            list-style-type: disc; /* 圆点样式 */
+            padding: 1em 2em; /* 适当内边距优化显示 */
+        }
+
+        /* 列表项样式 */
+        li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+
+            text-align: center;
+            color: white;
+            background: linear-gradient(to right,#ec695c, #61c454) no-repeat right bottom;
+            background-size: 0 2px;
+            transition: background-size 1300ms;
+            /*padding: 0.3em 0; /* 增加行高优化显示 */
+        }
+        li:hover {
+            background-position-x: left;
+            background-size: 100% 2px;
+        }
+
+        /* 链接样式 */
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* 画师链接样式 */
+			a.contact {
+				position: absolute;
+				background-color: rgba(128, 128, 128, 0.1);
+				border-radius: 5px;
+				bottom: 10px;
+    			right: 10px;
+				text-decoration: none;
+    			font-family: Arial, sans-serif;
+			}
+			a.contact:hover {
+    			background-color: rgba(128, 128, 128, 0.9);
+  			}
+			span.character {
+				color: rgba(255, 255, 255, 0.9);
+			}
+
+        /* 手机端适配 */
+        @media (max-width: 768px) {
+            body {
+                /* 手机端背景图片配置 */
+                background-image: url(resouce/background/mobile-background.jpg); /* 手机端背景图路径 */
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                padding: 30px 15px;
+            }
+
+            .list-container {
+                padding: 0 15px 30px;
+            }
+
+            ul {
+                padding: 20px 30px;
+            }
+
+            li {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>— 网站发布页 —</h1>
+    
+    <div class="list-container">
+        <ul>
+            <li><a href="">第1项>di></li>
+            <li><a href="">第2项</a></li>
+            <li><a href="">第3项</a></li>
+            <li><a href="">第4项</a></li>
+            <li><a href="">第5项</a></li>
+            <li><a href="">关于（没写）</a></li>
+        </ul>
+    </div>
+    <div class="piture-container">
+        <a class='contact' href='https://example.com/'><span class='character'>画师链接</span></a>
+    </div>
+</body>
+</html>
