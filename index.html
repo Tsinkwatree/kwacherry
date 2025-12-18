@@ -36,10 +36,10 @@
             font-size: 2.5rem;
             
 
-            background: linear-gradient(to right,rgba(246, 115, 102, 0.7), rgba(107, 206, 94, 0.7)) no-repeat bottom;
+            background: linear-gradient(to right,rgba(246, 115, 102, 0.7), rgba(107, 206, 94, 0.7)) no-repeat center;
 			background-size: 0 50px;
 			transition: background-size 1300ms;
-			border-radius: 5px;
+			border-radius: 8px;
 			padding: 0 0em;
         }
         /* 实时解析鼠标是否在标题 */
@@ -65,7 +65,16 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             list-style-type: disc; /* 圆点样式 */
             padding: 1em 2em; /* 适当内边距优化显示 */
+
+
+
+
+
         }
+        /*.ul:hover {
+            box-shadow: 0 2px 4px rgb(0, 0, 0);
+        }*/
+
 
         /* 列表项样式 */
         li {
@@ -92,21 +101,31 @@
         }
 
         /* 画师链接样式 */
-			a.contact {
-				position: absolute;
-				background-color: rgba(128, 128, 128, 0.1);
-				border-radius: 5px;
-				bottom: 10px;
-    			right: 10px;
-				text-decoration: none;
-    			font-family: Arial, sans-serif;
-			}
-			a.contact:hover {
-    			background-color: rgba(128, 128, 128, 0.9);
-  			}
-			span.character {
-				color: rgba(255, 255, 255, 0.9);
-			}
+        a.contact {
+            position: absolute;
+            background-color: rgba(128, 128, 128, 0.1);
+            border-radius: 5px;
+            bottom: 10px;
+            right: 10px;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+        }
+        a.contact:hover {
+            background-color: rgba(128, 128, 128, 0.9);
+        }
+        span.character {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .footer {
+
+            position: absolute;
+            bottom: 10px;
+
+            margin-top: 40px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
 
         /* 手机端适配 */
         @media (max-width: 768px) {
@@ -141,15 +160,20 @@
     <div class="list-container">
         <ul>
             <li><a href="personal/PersonalPager.html">个人主页</li>
-            <li><a href="">第2项（都没写）</a></li>
-            <li><a href="">第3项</a></li>
-            <li><a href="">第4项</a></li>
-            <li><a href="">第5项</a></li>
-            <li><a href="">关于（没写）</a></li>
+            <li><a href="other/emmm.html">???</a></li>
+            <li><a href="#"><s>第仨项</s></a></li>
+            <li><a href="#"><s>第亖项</s></a></li>
+            <li><a href="#"><s>第Ⅴ项</s></a></li>
+            <li><a href="https://github.com/Tsinkwatree/kwacherry">关于网站仓库</a></li>
         </ul>
     </div>
     <div class="piture-container">
         <a class='contact' href='https://example.com/'><span class='character'>画师链接</span></a>
+        
+    </div>
+
+    <div class="footer">
+        <span class="i-footer">© 2077 发布页 - 保留所有权利 </span>
     </div>
 </body>
 </html>

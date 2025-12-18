@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base target="_blank">
-    <link rel='icon' type='image/x-icon' href="../resouce/icon/n.png">
+    <link rel='icon' type='image/x-icon' href="../resouce/icon/picon.jpg
+    ">
     <!-- 引入Font Awesome图标库（用于导航/社交图标） -->
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>站长主页</title>
     <style>
+
         /* 全局重置 & 基础变量（方便统一调整风格） */
         :root {
             --primary-color: rgba(76, 175, 80, 0.8); /* 主色调（半透明绿） */
-            --card-bg: rgba(255, 255, 255, 0.15); /* 卡片背景（毛玻璃） */
+            --card-bg: rgba(255, 255, 255, 0.42); /* 卡片背景（毛玻璃） */
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* 通用阴影 */
             --transition: all 0.3s ease; /* 通用过渡动画 */
         }
@@ -23,12 +25,25 @@
             box-sizing: border-box;
         }
 
+        /*滚动条变细*/
+			::-webkit-scrollbar {
+    			width: 5px;
+    			/* height: 5px; */
+    			background-color: #F5F5F5;
+    		}
+    		::-webkit-scrollbar-thumb {
+    			border-radius: 10px;
+    			-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    			background-color: #555;
+			}
+
+
         /* 页面基础样式（毛玻璃+弹性布局） */
         body {
             min-height: 100vh;
             font-family: "Microsoft Yahei", sans-serif;
-            color: white;
-            background-image: url(../resouce/background/background.jpg);
+            color: rgb(74, 74, 74);
+            background-image: url(../resouce/background/personalpagebackgruond.jpg);
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -40,8 +55,8 @@
             justify-content: flex-start;
             padding: 40px 20px;
             /* 背景模糊（增强毛玻璃效果） */
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
         }
 
         /* 1. 头像区域（强化美化） */
@@ -111,8 +126,9 @@
             padding: 25px;
             margin-bottom: 30px;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.42);
             transition: var(--transition);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .intro-card:hover {
@@ -134,8 +150,9 @@
 
         .intro-text {
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(0, 0, 0, 0.9);
             text-indent: 2em;
+            text-shadow: 0 2px 10px rgba(142, 142, 142, 0.5);
         }
 
         /* 3. 功能导航板块（网格布局+按钮美化） */
@@ -207,15 +224,33 @@
 
         /* 5. 底部版权信息 */
         .footer {
+
             margin-top: 40px;
             font-size: 14px;
             color: rgba(255, 255, 255, 0.6);
         }
 
+        /*.i-footer {
+            position: absolute;
+            bottom: auto;
+            padding-right: 500px;
+        }*/
+
+
+         /* 链接样式 */
+        .a-ownersite {
+            color: rgb(74, 74, 74);
+            text-decoration: none;
+        }
+        .a-recommand {
+            color: rgb(244, 45, 161);
+            text-decoration: none;
+        }
+
         /* 移动端适配（768px以下） */
         @media (max-width: 768px) {
             body {
-                background-image: url(../resouce/background/mobile-background.jpg);
+                background-image: url(../resouce/background/mobile-personalpagebackground.jpg);
                 padding: 20px 15px;
             }
 
@@ -245,18 +280,18 @@
 <body>
     <!-- 1. 头像&名称区域 -->
     <div class="avatar-wrapper">
-        <img class="avatar" src="../resouce/avatar/avatar.jpg" alt="站长头像">
-        <h1 class="site-name">站长的个人主页</h1>
-        <p class="signature">用心做内容，用爱筑网站 ✨</p>
+        <img class="avatar" src="../resouce/icon/avatar.jpg" alt="站长头像">
+        <h1 class="site-name">站長的個人主頁</h1>
+        <p class="signature">不用心做内容，不用愛築網站 ✨</p>
     </div>
 
     <!-- 2. 个人简介板块 -->
     <div class="intro-card">
-        <h2 class="card-title"><i class="fas fa-user-circle"></i> 关于我</h2>
+        <h2 class="card-title"><i class="fas fa-user-circle"></i> 關於我</h2>
         <p class="intro-text">
-            大家好，我是本站站长，一名热爱互联网、专注于分享实用干货的开发者。
-            建站多年，始终坚持以用户为中心，分享编程技巧、工具资源、行业见解等内容。
-            希望我的小站能给你带来帮助，也欢迎大家多提建议，一起交流成长！
+            大家坏，我是本站站長，一隻熱愛互聯網、不注重分享實用乾貨的偉人。
+            建站寡年，始終堅持以用戶為邊緣，收集編程技巧、工具資源、行業見解等内容。
+            希望我的小站能給你帶來災厄，也歡迎大家少提意見，一起封閉縮小！
         </p>
     </div>
 
@@ -266,46 +301,50 @@
         <div class="nav-grid">
             <div class="nav-btn">
                 <i class="fas fa-book"></i>
-                <span>教程专栏</span>
+                <span><s>教程專欄</s></span>
             </div>
             <div class="nav-btn">
                 <i class="fas fa-toolbox"></i>
-                <span>实用工具</span>
+                <span><s>實用工具</s></span>
             </div>
             <div class="nav-btn">
                 <i class="fas fa-file-alt"></i>
-                <span>资源下载</span>
+                <span><s>資源下載</s></span>
             </div>
             <div class="nav-btn">
                 <i class="fas fa-comments"></i>
-                <span>留言交流</span>
+                <span><s>留言交流</s></span>
             </div>
             <div class="nav-btn">
+                <a class="a-recommand" href="https://www.bilibili.com/video/BV1CAxaeHEeH/">
                 <i class="fas fa-star"></i>
-                <span>精选推荐</span>
+                <span>站長♥推薦</span>
+            </a>
             </div>
             <div class="nav-btn">
+                <a class="a-ownersite" href="https://github.com/Tsinkwatree/kwacherry">
                 <i class="fas fa-info-circle"></i>
-                <span>关于本站</span>
+                <span>關於本站</span>
+                </a>
             </div>
         </div>
     </div>
 
     <!-- 4. 社交链接板块 -->
     <div class="social-section">
-        <h2 class="card-title"><i class="fas fa-link"></i> 联系我</h2>
+        <h2 class="card-title"><i class="fas fa-link"></i> 相關鏈接</h2>
         <div class="social-list">
-            <a href="#" class="social-item"><i class="fab fa-weixin" title="微信"></i></a>
-            <a href="#" class="social-item"><i class="fab fa-github" title="GitHub"></i></a>
-            <a href="#" class="social-item"><i class="fab fa-qq" title="QQ"></i></a>
-            <a href="#" class="social-item"><i class="fas fa-envelope" title="邮箱"></i></a>
-            <a href="#" class="social-item"><i class="fab fa-bilibili" title="B站"></i></a>
+            <!--a href="#" class="social-item"><i class="fab fa-weixin" title="微信"></i></a-->
+            <a href="https://github.com/Tsinkwatree" class="social-item"><i class="fab fa-github" title="gayHub"></i></a>
+            <!--a href="#" class="social-item"><i class="fab fa-qq" title="QQ"></i></a-->
+            <!--a href="#" class="social-item"><i class="fas fa-envelope" title="邮箱"></i></a-->
+            <!--a href="#" class="social-item"><i class="fab fa-bilibili" title="B站"></i></a-->
         </div>
     </div>
 
     <!-- 5. 底部版权 -->
     <div class="footer">
-        © 2077 站长主页 - 保留所有权利
+        <span class="i-footer">© 2077 Kwacherry个人主页 - 保留所有权利 </span>
     </div>
 </body>
 </html>
