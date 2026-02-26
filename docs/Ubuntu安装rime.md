@@ -71,7 +71,7 @@ patch:
 
 创建文件夹 `dicts` ，丢词典进去。
 
-编辑 `custom_dict.all.dict.yaml` ，按照使用习惯按顺序排列，有
+编辑 `custom_dict.all.dict.yaml` ，字典文件去掉后缀 `.dict.yaml` ，然后按照使用习惯按顺序排列，有
 
 ```yaml
 name: custom_dict.all ##注意name和文件名一致
