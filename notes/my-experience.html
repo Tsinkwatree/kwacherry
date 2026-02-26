@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人笔记文档 | 方案</title>
+    <!-- 引入markdown渲染库（CDN） -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- 引入代码高亮样式（可选，让代码块更好看） -->
+    <link rel='icon' type='image/x-icon' href="../resouce/icon/avatar.jpg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+    <style>
+        /* 全局样式，简单易读 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f6f8fa;
+            
+        }
+        /* 左侧文件列表样式 */
+        .file-list {
+            width: 300px;
+            background-color: #ffffff;
+            border-right: 1px solid #e1e4e8;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .file-list h2 {
+            color: #24292e;
+            margin-bottom: 20px;
+            font-size: 18px;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 10px;
+        }
+        .file-item {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+        .file-item a {
+            text-decoration: none;
+            color: #0366d6;
+            font-size: 14px;
+            padding: 8px 10px;
+            display: block;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        .file-item a:hover {
+            background-color: #f1f8ff;
+        }
+        /* 右侧预览区域样式 */
+        .preview-area {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background-color: #f6f8fa;
+        }
+        .preview-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        /* markdown内容样式适配 */
+        .preview-content h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #24292e;
+        }
+        .preview-content h2 {
+            font-size: 24px;
+            margin: 20px 0 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        .preview-content p {
+            line-height: 1.8;
+            margin-bottom: 16px;
+            color: #24292e;
+            font-size: 16px;
+        }
+        .preview-content code {
+            background-color: #f6f8fa;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: Consolas, monospace;
+        }
+        .preview-content pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+        }
+        .preview-content pre code {
+            padding: 0;
+            background: none;
+        }
+        .preview-content ul, .preview-content ol {
+            margin-left: 20px;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        .preview-content blockquote {
+            border-left: 4px solid #e1e4e8;
+            padding: 0 16px;
+            color: #6a737d;
+            margin-bottom: 16px;
+        }
+        .preview-content img {
+            max-width: 100%;
+            margin: 16px 0;
+            border-radius: 4px;
+        }
+        /* 初始提示样式 */
+        .initial-tip {
+            text-align: center;
+            color: #6a737d;
+            padding: 40px 0;
+        }
+        .initial-tip p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .initial-tip small {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧文件列表 -->
+    <div class="file-list">
+        <h2>我的笔记文档</h2>
+        <ul>
+            <!-- 👇👇👇添加markdown文件链接 ctrl+f Ctrl+F 文档 标记 mark tag 搜索 查找 search markdown Markdown mdmd 文件文件链接-->
+            <li class="file-item"><a href="javascript:loadMarkdown('../docs/Ubuntu安装rime.md')">Ubuntu安装rime.md</a></li>
+            <!-- <li class="file-item"><a href="javascript:loadMarkdown('docs/文件文件文件2.md')">22222.md</a></li> -->
+            <!-- <li class="file-item"><a href="javascript:loadMarkdown('docs/文件文件文件3.md')">33333.md</a></li> -->
+            <!-- 👆👆👆 新增文件时，复制上面一行，修改文件名 -->
+        </ul>
+    </div>
+
+    <!-- 右侧预览区域 -->
+    <div class="preview-area">
+        <div class="preview-content" id="previewContent">
+            <div class="initial-tip">
+                <p>请点击左侧的文档名称</p>
+                <small>即可查看对应的内容预览</small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 加载markdown文件并渲染的函数
+        function loadMarkdown(filePath) {
+            // 1. 显示加载提示
+            document.getElementById('previewContent').innerHTML = '<div class="initial-tip"><p>加载中...</p></div>';
+            
+            // 2. 读取markdown文件内容
+            fetch(filePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('文件不存在或无法访问');
+                    }
+                    return response.text();
+                })
+                .then(markdownText => {
+                    // 3. 将markdown转为HTML
+                    const htmlContent = marked.parse(markdownText);
+                    // 4. 显示渲染后的内容
+                    document.getElementById('previewContent').innerHTML = htmlContent;
+                    // 5. 代码高亮（可选）
+                    document.querySelectorAll('pre code').forEach((block) => {
+                        hljs.highlightElement(block);
+                    });
+                })
+                .catch(error => {
+                    // 加载失败提示
+                    document.getElementById('previewContent').innerHTML = `
+                        <div class="initial-tip" style="color: #d73a4a;">
+                            <p>加载失败</p>
+                            <small>错误：${error.message}<br>请检查文件路径是否正确</small>
+                        </div>
+                    `;
+                });
+        }
+    </script>
+</body>
+</html>
